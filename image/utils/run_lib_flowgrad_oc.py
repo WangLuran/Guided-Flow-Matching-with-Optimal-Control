@@ -116,79 +116,6 @@ def dflow_optimization(z0, dynamic, N, L_N,  number_of_iterations, alpha):
 
     return z_best
 
-def dflow_optimization_lbfgs(z0, dynamic, N, L_N, max_iter, max_step=5, lr=1, verbose=False):
-    device = z0.device
-    shape = z0.shape
-    batch_size = z0.shape[0]
-    # z0.requires_grad = True
-
-    cnt = 0
-    dt = 1./N
-    eps = 1e-3 # default: 1e-3
-
-    # def loss_fn(cur_r0):
-    #     r = cur_r0
-    #     dt = 1./N
-    #     eps = 1e-3
-    #     for i in range(N):
-    #       t = torch.ones(z0.shape[0], device=z0.device) * i / N * (1.-eps) + eps
-    #       pred = dynamic(r, t*999)
-    #       r = r + pred * dt
-
-    #     return r.detach(), L_N(r)
-
-    def loss_fn(cur_r0):
-        r = cur_r0
-        # ts = torch.linspace(*tlist, n_step + 1, device=r.device) * (1. - eps) + eps
-        # print('ts', ts)
-        dt = 1 / N
-        # print('dt', dt)
-        for i in range(N):
-          t = torch.ones(z0.shape[0], device=z0.device) * i / N * (1.-eps) + eps
-          # print(i, t, t * 999)
-          # TODO: check if t is correct
-          r = r + dynamic(r, t * 999) * dt
-
-        return r.detach(), L_N(r)
-
-    # def closure():
-    #     nonlocal cnt, r0_opt
-    #     cnt += 1
-    #     optimizer.zero_grad()
-    #     r0_opt.requires_grad_(False)
-    #     _, loss = loss_fn(r0_opt)
-    #     loss.backward()
-    #     if verbose:
-    #         print(f'Iter {cnt}: Loss {loss.item():.4f}')
-    #     return loss
-    
-    def closure():
-      nonlocal cnt
-      cnt += 1
-      optimizer.zero_grad()
-      _, loss = loss_fn(r0_opt)
-      if torch.isnan(loss).any():
-          return torch.tensor(1e5, device=r0_opt.device)
-      loss.backward(retain_graph=True)
-      # clip_grad_norm_(r0_opt, max_grad_norm)
-      if verbose:
-          print(f'Iter {cnt}: Loss {loss.item():.4f}')
-      return loss
-
-    r0_opt = z0.detach().clone()
-    r0_opt.requires_grad_(True)
-    optimizer = torch.optim.LBFGS([r0_opt], lr=lr, max_iter=max_iter, line_search_fn='strong_wolfe')
-    
-    for step in range(max_step):
-      loss = optimizer.step(closure)
-      print(f'Step {step}: Loss {loss.item():.4f}')
-
-    r0_opt = r0_opt.detach()
-    with torch.no_grad():
-      r1_opt, _ = loss_fn(r0_opt)
-
-    return r1_opt, r0_opt
-
 def flowgrad_optimization_oc_d(z0, u_ind, dynamic, generate_traj, L_N, N=100, number_of_iterations=15, straightness_threshold=1e-3, lr=2.5,
                                   weight_decay=0.995):
     device = z0.device
@@ -226,11 +153,6 @@ def flowgrad_optimization_oc_d(z0, u_ind, dynamic, generate_traj, L_N, N=100, nu
           for ind in u.keys():
               opt_u[ind] = u[ind].detach().clone()
           L_best = loss.detach().cpu().numpy()
-
-        # print('iteration:', i)
-        # # print('   inputs:', inputs.view(-1).detach().cpu().numpy())
-        # print('   L:%.6f'%loss.detach().cpu().numpy())
-        # # print('   lambda:', lam.reshape(-1).detach().cpu().numpy())
         
         eps = 1e-3 # default: 1e-3
         g_old = None
