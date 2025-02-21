@@ -1,8 +1,8 @@
-# Statistical Flow Matching (SFM)
+# Training Free Optimal Control Flow (OC-FLOW)
 
-By Chaoran Cheng, Oct 2nd, 2024
+By Luran Wang, Feb 21st, 2025
 
-This is the official repo for the NeurIPS 2024 paper *Categorical Flow Matching on Statistical Manifolds* by Chaoran Cheng, Jiahan Li, Jian Peng, and Ge Liu. The paper is available at [arXiv](https://arxiv.org).
+This is the official repo for the ICLR 2025 paper *Training Free Optimal Control Flow* by Luran Wang, Chaoran Cheng, Yizhen Liao, Yanru Qu, Ge liu. The paper is available at [arXiv](https://arxiv.org).
 
 <p align="center">
   <img src="pictures/triangle_plot.png" alt="Triangle plot" width="45%"/>
