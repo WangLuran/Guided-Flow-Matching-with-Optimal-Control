@@ -28,13 +28,6 @@ flags.DEFINE_integer("batch_size", 1, "batch size")
 flags.DEFINE_integer("index", 0, "position of samples")
 text_prompts = ['A photo of an old face.','A photo of a sad face.','A photo of a smiling face.','A photo of an angry face.','A photo of a face with curly hair.']
 
-# import glob
-
-# all_image_paths = sorted(glob.glob('data/data_celeba_hq_1024/*.jpg'))
-# print(len(all_image_paths))
-# print(all_image_paths[:10])
-# image_paths = all_image_paths[:10]
-
 image_paths = ['./demo/celeba.jpg']
 
 alpha = 0.7
@@ -70,11 +63,6 @@ class CelebADataset(Dataset):
         image = get_img(img_path)  # Load image
         
         return image
-
-# Create the dataset and DataLoader
-# celeba_dataset = CelebADataset(image_dir)
-
-# print('data finish')
 
 # Set random seed for reproducibility
 np.random.seed(42)
