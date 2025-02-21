@@ -10,6 +10,7 @@ This is the official repo for the ICLR 2025 paper *Training Free Optimal Control
 We introduce *OC-Flow* as a general and theoretically grounded framework for guided flow matching. By formulating gradient guidance within the optimal control framework, we present the first training-free approach with proven convergence in both Euclidean and SO(3) spaces. OC-Flow demonstrates superior performance in extensive experiments on text-guided image manipulation, conditional molecule generation, and peptide backbone design. Check out our paper for more details!
 
 ## Installation
+### image
 To apply OC-Flow to control the output of pre-trained Rectified Flow model on CelebA-HQ, the following packages are required,
 
 ```
@@ -23,7 +24,8 @@ Just put it in ``` ./ ```
 
 The full Celeba-hq-1024 dataset can be downloaded from [kaggle celeba-hq dataset](https://www.kaggle.com/datasets/lamsimon/celebahq)
 
-### Usage
+## Usage
+### iamge
 
 We provide a demo image ``` ./demo/celeba.jpg ``` for running our model to control the output of pre-trained Rectified Flow model on CelebA-HQ.
 
