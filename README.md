@@ -12,13 +12,19 @@ We introduce *OC-Flow* as a general and theoretically grounded framework for gui
 
 ## Requirements
 
-To apply OC-Flow to control the output of pre-trained Rectified Flow model on CelebA-HQ, the following packages are required,
+To apply OC-Flow to control the output of pre-trained Rectified Flow model on CelebA-HQ or QM9, run the following code:
+
+```bash
+./image/build_env.sh
 
 ```
-torch, numpy, lpips, clip, ml_collections, absl-py 
+
+To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file:
+
+```bash
+conda env create -f peptide/environment.yml
 ```
 
-We also provide a build_env.sh script to install the dependencies.
 
 ## Datasets
 
