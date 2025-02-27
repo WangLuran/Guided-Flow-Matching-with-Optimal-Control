@@ -1,4 +1,4 @@
-# Training Free Optimal Control Flow (OC-FLOW)
+![image](https://github.com/user-attachments/assets/e07c6678-d9b0-4ce5-8e3e-ef5341e913bb)# Training Free Optimal Control Flow (OC-FLOW)
 
 This is the official repo for the ICLR 2025 paper *Training Free Optimal Control Flow* by Luran Wang, Chaoran Cheng, Yizhen Liao, Yanru Qu, Ge liu. The paper is available at [arXiv](https://arxiv.org/abs/2410.18070).
 
@@ -20,21 +20,22 @@ torch, numpy, lpips, clip, ml_collections, absl-py
 We also provide a build_env.sh script to install the dependencies.
 
 ## Datasets
--Celeba-hq-1024
 
-The Celeba-hq-1024 dataset is a high-quality version of CelebA that consists of 30,000 images at 1024×1024 resolution.The full Celeba-hq-1024 dataset can be downloaded from [kaggle celeba-hq dataset](https://www.kaggle.com/datasets/lamsimon/celebahq).
+- **Celeba-HQ-1024**  
+  The **Celeba-HQ-1024** dataset is a high-quality version of CelebA, containing **30,000 images** at **1024×1024** resolution.  
+  The full dataset can be downloaded from [Kaggle Celeba-HQ Dataset](https://www.kaggle.com/datasets/lamsimon/celebahq).
 
--QM9
+- **QM9**  
+  The **QM9** dataset consists of **133,885 small molecules** composed of **C, H, O, N, and F**.  
+  The QM9 electron density dataset was built by **Jørgensen et al.** ([Paper](https://www.nature.com/articles/s41524-022-00863-y)) and is publicly available via [Figshare](https://data.dtu.dk/articles/dataset/QM9_Charge_Densities_and_Energies_Calculated_with_VASP/16794500).
 
-The QM9 dataset contains 133885 small molecules consisting of C, H, O, N, and F. The QM9 electron density dataset was built by Jørgensen et al. ([paper](https://www.nature.com/articles/s41524-022-00863-y)) and was publicly available via [Figshare](https://data.dtu.dk/articles/dataset/QM9_Charge_Densities_and_Energies_Calculated_with_VASP/16794500). 
+  Each tarball needs to be extracted, but the inner **lz4 compression** should be retained.  
+  Code is provided for reading the compressed **lz4** files.
 
-Each tarball needs to be extracted, but the inner lz4 compression should be kept. We provided code to read the compressed lz4 file.
+- **Peptide Design**  
+  The data and pretrained model weights for **peptide design** tasks are available in [PepFlow](https://github.com/Ced3-han/PepFlowww).
 
--Peptide Design
-
-The data and pretrained model weights used for peptide design tasks are provided in [PepFlow](https://github.com/Ced3-han/PepFlowww)
-
-Stay tuned for updates and feel free to reach out for collaboration or discussions!
+Stay tuned for updates, and feel free to reach out for collaboration or discussions!
 
 ## Usage
 Our implementation is designed to be flexible and easy to use. As demonstrated above, you can easily incorporate OC-Flow into your own project using the framework. 
