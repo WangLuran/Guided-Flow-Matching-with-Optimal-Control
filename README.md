@@ -43,11 +43,11 @@ Our implementation is designed to be flexible and easy to use. As demonstrated a
 The pre-trained generative model can be downloaded from [Rectified Flow CelebA-HQ](https://drive.google.com/file/d/1ryhuJGz75S35GEdWDLiq4XFrsbwPdHnF/view?usp=sharing) 
 Just put it in ``` ./ ```
 
-A sample image (`./image/demo/celeba.jpg`) is provided for testing the pre-trained Rectified Flow model on CelebA-HQ.
+A **sample image** (`./image/demo/celeba.jpg`) is provided for testing the pre-trained Rectified Flow model on CelebA-HQ.
 
-To modify the text guidance or the pretrained model, update the relevant parameters in [`./image/main_data.py`](./image/main_data.py).
+To modify the **text guidance** or the **pretrained model**, update the relevant parameters in [`./image/main_data.py`](./image/main_data.py).
 
-The terminal reward function can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
+The **terminal reward function** can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
 
 Run the following command to generate results:
 
@@ -59,7 +59,7 @@ python image/main_data.py
 
 The pretrained model can be downloaded from [EquiFM](https://github.com/AlgoMole/MolFM)
 
-To modify the pretrained model or change the guidance classifier, update the relevant parameters in [`molecule/main_guided.py`](molecule/main_guided.py).
+To modify the **pretrained model** or change the **guidance classifier**, update the relevant parameters in [`molecule/main_guided.py`](molecule/main_guided.py).
 
 Run the following command to generate results:
 
