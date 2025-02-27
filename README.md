@@ -19,8 +19,7 @@ torch, numpy, lpips, clip, ml_collections, absl-py
 
 We also provide a build_env.sh script to install the dependencies.
 
-## Datasets and Pretrained Model Weights
-
+## Datasets
 ### Celeba-hq-1024
 
 The Celeba-hq-1024 dataset is a high-quality version of CelebA that consists of 30,000 images at 1024×1024 resolution.The full Celeba-hq-1024 dataset can be downloaded from [kaggle celeba-hq dataset](https://www.kaggle.com/datasets/lamsimon/celebahq).
@@ -46,7 +45,7 @@ Just put it in ``` ./ ```
 
 A sample image (`./image/demo/celeba.jpg`) is provided for testing the pre-trained Rectified Flow model on CelebA-HQ.
 
-To modify the text guidance, update the relevant parameters in [`./image/main_data.py`](./image/main_data.py).
+To modify the text guidance or the pretrained model, update the relevant parameters in [`./image/main_data.py`](./image/main_data.py).
 
 The terminal reward function can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
 
@@ -60,7 +59,7 @@ python image/main_data.py
 
 The pretrained model can be downloaded from [EquiFM](https://github.com/AlgoMole/MolFM)
 
-To customize the pretrained model or to change the guidance classifier, go to `molecule/main_guided.py`.
+To modify the pretrained model or change the guidance classifier, update the relevant parameters in [`molecule/main_guided.py`](molecule/main_guided.py).
 
 Run the following command to generate results:
 
@@ -70,6 +69,10 @@ python molecule/main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --ma
 
 
 ### Peptide Design
+
+Our pretrained model is PepFlow w/Bb, a model designed to exclusively sample peptide backbones while optimizing translations in Euclidean space and rotations in SO(3) space. The model is rovided in provided in [PepFlow](https://github.com/Ced3-han/PepFlowww)
+
+To change the reward guidance, pretrained model or the dataset, update the class 'Reward' in line 82; parameter 'dataset' in line 442; parameter 'model' in line 461 in [`peptide/rlhf_finetune/samples_left.py`](peptide/rlhf_finetune/samples_left.py).
 
 To reproduce the experiments in the paper, run the following command:
 
