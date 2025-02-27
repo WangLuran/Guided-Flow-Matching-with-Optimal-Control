@@ -25,9 +25,6 @@ We also provide a build_env.sh script to install the dependencies.
 
 The Celeba-hq-1024 dataset is a high-quality version of CelebA that consists of 30,000 images at 1024×1024 resolution.The full Celeba-hq-1024 dataset can be downloaded from [kaggle celeba-hq dataset](https://www.kaggle.com/datasets/lamsimon/celebahq).
 
-The pre-trained generative model can be downloaded from [Rectified Flow CelebA-HQ](https://drive.google.com/file/d/1ryhuJGz75S35GEdWDLiq4XFrsbwPdHnF/view?usp=sharing) 
-Just put it in ``` ./ ```
-
 ### QM9
 
 The QM9 dataset contains 133885 small molecules consisting of C, H, O, N, and F. The QM9 electron density dataset was built by Jørgensen et al. ([paper](https://www.nature.com/articles/s41524-022-00863-y)) and was publicly available via [Figshare](https://data.dtu.dk/articles/dataset/QM9_Charge_Densities_and_Energies_Calculated_with_VASP/16794500). 
@@ -44,19 +41,14 @@ Stay tuned for updates and feel free to reach out for collaboration or discussio
 Our implementation is designed to be flexible and easy to use. As demonstrated above, you can easily incorporate OC-Flow into your own project using the framework. 
 ### iamge
 
-#### Running the Model with a Demo Image
+The pre-trained generative model can be downloaded from [Rectified Flow CelebA-HQ](https://drive.google.com/file/d/1ryhuJGz75S35GEdWDLiq4XFrsbwPdHnF/view?usp=sharing) 
+Just put it in ``` ./ ```
 
 A sample image (`./image/demo/celeba.jpg`) is provided for testing the pre-trained Rectified Flow model on CelebA-HQ.
 
-#### Customizing Text Guidance
-
 To modify the text guidance, update the relevant parameters in [`./image/main_data.py`](./image/main_data.py).
 
-#### Adjusting the Terminal Reward Function
-
 The terminal reward function can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
-
-#### Running the Model
 
 Run the following command to generate results:
 
@@ -65,6 +57,17 @@ python image/main_data.py
 ```
 
 ### QM9
+
+The pretrained model can be downloaded from [EquiFM](https://github.com/AlgoMole/MolFM)
+
+To customize the pretrained model or to change the guidance classifier, go to `molecule/main_guided.py`.
+
+Run the following command to generate results:
+
+```bash
+python molecule/main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --max-step 5 --max-iter 5 --save-path oc_alpha.pt
+```
+
 
 ### Peptide Design
 
