@@ -1,4 +1,5 @@
-Training Free Optimal Control Flow (OC-FLOW)
+# Training Free Optimal Control Flow (OC-FLOW)
+
 
 This is the official repo for the ICLR 2025 paper *Training Free Optimal Control Flow* by Luran Wang, Chaoran Cheng, Yizhen Liao, Yanru Qu, Ge liu. The paper is available at [arXiv](https://arxiv.org/abs/2410.18070).
 
