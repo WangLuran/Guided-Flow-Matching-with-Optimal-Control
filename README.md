@@ -70,13 +70,18 @@ python molecule/main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --ma
 
 ### Peptide Design
 
-Our pretrained model is PepFlow w/Bb, a model designed to exclusively sample peptide backbones while optimizing translations in Euclidean space and rotations in SO(3) space. The model is rovided in provided in [PepFlow](https://github.com/Ced3-han/PepFlowww)
+Our pretrained model, **PepFlow w/Bb**, is designed to exclusively sample peptide backbones while optimizing translations in **Euclidean space** and rotations in **SO(3) space**. The model is available at [PepFlow](https://github.com/Ced3-han/PepFlowww).
 
-To change the reward guidance, pretrained model or the dataset, update the class 'Reward' in line 82; parameter 'dataset' in line 442; parameter 'model' in line 461 in [`peptide/rlhf_finetune/samples_left.py`](peptide/rlhf_finetune/samples_left.py).
 
-To reproduce the experiments in the paper, run the following command:
+To modify the reward guidance, pretrained model, or dataset, update the following in [`peptide/rlhf_finetune/samples_left.py`](peptide/rlhf_finetune/samples_left.py):
 
-```
+- **Reward function**: Modify the `Reward` class (line **82**).
+- **Dataset selection**: Change the `dataset` parameter (line **442**).
+- **Model configuration**: Update the `model` parameter (line **461**).
+
+Run the following command to reproduce the experiments:
+
+```bash
 sbatch peptide/submit_rlhf_fm.py
 ```
 
