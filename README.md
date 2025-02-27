@@ -20,17 +20,17 @@ torch, numpy, lpips, clip, ml_collections, absl-py
 We also provide a build_env.sh script to install the dependencies.
 
 ## Datasets
-### Celeba-hq-1024
+-Celeba-hq-1024
 
 The Celeba-hq-1024 dataset is a high-quality version of CelebA that consists of 30,000 images at 1024×1024 resolution.The full Celeba-hq-1024 dataset can be downloaded from [kaggle celeba-hq dataset](https://www.kaggle.com/datasets/lamsimon/celebahq).
 
-### QM9
+-QM9
 
 The QM9 dataset contains 133885 small molecules consisting of C, H, O, N, and F. The QM9 electron density dataset was built by Jørgensen et al. ([paper](https://www.nature.com/articles/s41524-022-00863-y)) and was publicly available via [Figshare](https://data.dtu.dk/articles/dataset/QM9_Charge_Densities_and_Energies_Calculated_with_VASP/16794500). 
 
 Each tarball needs to be extracted, but the inner lz4 compression should be kept. We provided code to read the compressed lz4 file.
 
-### Peptide Design
+-Peptide Design
 
 The data and pretrained model weights used for peptide design tasks are provided in [PepFlow](https://github.com/Ced3-han/PepFlowww)
 
