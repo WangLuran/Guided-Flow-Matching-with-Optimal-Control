@@ -37,16 +37,31 @@ Each tarball needs to be extracted, but the inner lz4 compression should be kept
 ### Peptide Design
 
 The data and pretrained model weights used for peptide design tasks are provided in [PepFlow](https://github.com/Ced3-han/PepFlowww)
+
 Stay tuned for updates and feel free to reach out for collaboration or discussions!
 
 ## Usage
+Our implementation is designed to be flexible and easy to use. As demonstrated above, you can easily incorporate OC-Flow into your own project using the framework. 
 ### iamge
 
-We provide a demo image ``` ./demo/celeba.jpg ``` for running our model to control the output of pre-trained Rectified Flow model on CelebA-HQ.
+#### Running the Model with a Demo Image
 
-```
-python main_data.py
-```
+A sample image (`./image/demo/celeba.jpg`) is provided for testing the pre-trained **Rectified Flow** model on **CelebA-HQ**.
+
+#### Customizing Text Guidance
+
+To modify the text guidance, update the relevant parameters in [`./image/main_data.py`](./image/main_data.py).
+
+#### Adjusting the Terminal Reward Function
+
+The terminal reward function can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of **CLIP loss** and **LPIPS loss**.
+
+#### Running the Model
+
+Run the following command to generate results:
+
+```sh
+python image/main_data.py ```
 
 ### QM9
 
