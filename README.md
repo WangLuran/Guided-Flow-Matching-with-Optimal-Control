@@ -46,7 +46,7 @@ Our implementation is designed to be flexible and easy to use. As demonstrated a
 
 #### Running the Model with a Demo Image
 
-A sample image (`./image/demo/celeba.jpg`) is provided for testing the pre-trained **Rectified Flow** model on **CelebA-HQ**.
+A sample image (`./image/demo/celeba.jpg`) is provided for testing the pre-trained Rectified Flow model on CelebA-HQ.
 
 #### Customizing Text Guidance
 
@@ -54,14 +54,15 @@ To modify the text guidance, update the relevant parameters in [`./image/main_da
 
 #### Adjusting the Terminal Reward Function
 
-The terminal reward function can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of **CLIP loss** and **LPIPS loss**.
+The terminal reward function can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
 
 #### Running the Model
 
 Run the following command to generate results:
 
 ```sh
-python image/main_data.py ```
+python image/main_data.py
+```
 
 ### QM9
 
