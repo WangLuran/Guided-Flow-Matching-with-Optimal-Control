@@ -57,10 +57,10 @@ To modify the **text guidance** or the **pretrained model**, update the relevant
 
 The **terminal reward function** can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
 
-Run the following command to generate results:
+Run the following command to generate results after cd to the `image` folder:
 
 ```sh
-python image/main_data.py
+python main_data.py
 ```
 
 ### QM9
@@ -72,7 +72,7 @@ To modify the **pretrained model** or change the **guidance classifier**, update
 Run the following command to generate results:
 
 ```bash
-python molecule/main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --max-step 5 --max-iter 5 --save-path oc_alpha.pt
+python main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --max-step 5 --max-iter 5 --save-path oc_alpha.pt
 ```
 
 
