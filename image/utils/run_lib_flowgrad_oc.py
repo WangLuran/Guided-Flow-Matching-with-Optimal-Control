@@ -425,6 +425,6 @@ def flowgrad_edit_batch(config, model_path, image_paths, text_prompt, output_dir
           'clip_loss': clip_loss,
           'lpips_score': lpips_score,
         }
-
+  os.makedirs(target_dir, exist_ok=True)
   torch.save(metrics, f'{target_dir}/metrics.pt')
   return metrics
