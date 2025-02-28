@@ -19,10 +19,10 @@ To apply OC-Flow to control the output of pre-trained Rectified Flow model on Ce
 
 ```
 
-To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file:
+To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file after navigating to the `peptide` directory:
 
 ```bash
-conda env create -f peptide/environment.yml
+conda env create -f environment.yml
 ```
 
 
@@ -57,7 +57,7 @@ To modify the **text guidance** or the **pretrained model**, update the relevant
 
 The **terminal reward function** can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
 
-Run the following command to generate results after cd to the `image` folder:
+Navigate to the `image` directory and run the following command to generate results:
 
 ```sh
 python main_data.py
@@ -69,7 +69,7 @@ The pretrained model can be downloaded from [EquiFM](https://github.com/AlgoMole
 
 To modify the **pretrained model** or change the **guidance classifier**, update the relevant parameters in [`molecule/main_guided.py`](molecule/main_guided.py).
 
-Run the following command to generate results:
+Navigate to the `molecule` directory and run the following command to generate results:
 
 ```bash
 python main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --max-step 5 --max-iter 5 --save-path oc_alpha.pt
@@ -87,10 +87,10 @@ To modify the reward guidance, pretrained model, or dataset, update the followin
 - **Dataset selection**: Change the `dataset` parameter (line **442**).
 - **Model configuration**: Update the `model` parameter (line **461**).
 
-Run the following command to reproduce the experiments:
+Navigate to the `peptide` directory and run the following command to reproduce the experiments:
 
 ```bash
-sbatch peptide/submit_rlhf_fm.py
+sbatch submit_rlhf_fm.py
 ```
 
 
