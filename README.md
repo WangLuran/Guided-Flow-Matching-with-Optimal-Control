@@ -90,7 +90,7 @@ To modify the reward guidance, pretrained model, or dataset, update the followin
 Navigate to the `peptide` directory and run the following command to reproduce the experiments:
 
 ```bash
-sbatch submit_rlhf_fm.py
+sbatch submit_rlhf_fm.sh
 ```
 
 
