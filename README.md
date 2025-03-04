@@ -90,7 +90,7 @@ To modify the reward guidance, pretrained model, or dataset, update the followin
 Navigate to the `peptide` directory and run the following command to reproduce the experiments:
 
 ```bash
-sbatch submit_rlhf_fm.sh
+python rlhf_finetune/samples_left.py  --reg_rot 0 --start_data 0 --todo_data 0 --n_tasks 1 --alpha 0.95 --beta 2.0 --logdir rlhf_fm/peptide/exp_rebuttal/so3_in_eu --algorithm oc_so3_opt --debug
 ```
 
 
