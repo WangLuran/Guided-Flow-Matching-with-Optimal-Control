@@ -84,8 +84,8 @@ Our pretrained model, **PepFlow w/Bb**, is designed to exclusively sample peptid
 To modify the reward guidance, pretrained model, or dataset, update the following:
 
 - **Reward function**: Modify the `Reward` class in line **82** in [`peptide/rlhf_finetune/samples_left.py`](peptide/rlhf_finetune/samples_left.py).
-- **Dataset selection**: Change the dataset path in line **37** in [`peptide/models_con/pep_dataloader.py`](peptide/models_con/pep_dataloader.py) together with the config parameter config.dataset.
-- **Model configuration**: Update the `FlowModel` class in [`peptide/models_con/flow_model.py`](peptide/models_con/flow_model.py) together with the config file configs/learn_angle.yaml.
+- **Dataset selection**: Change the dataset path in line **37** in [`peptide/models_con/pep_dataloader.py`](peptide/models_con/pep_dataloader.py) together with the config parameter `config.dataset`.
+- **Model configuration**: Update the `FlowModel` class in [`peptide/models_con/flow_model.py`](peptide/models_con/flow_model.py) together with the config file `configs/learn_angle.yaml`.
 
 Navigate to the `peptide` directory and run the following command to reproduce the experiments:
 
