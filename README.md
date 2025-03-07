@@ -18,7 +18,7 @@ To apply OC-Flow to control the output of pre-trained Rectified Flow model on Ce
 ./image/build_env.sh
 ```
 
-To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file and ' requirements.txt' file after navigating to the `peptide` directory:
+To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file and `requirements.txt` file after navigating to the `peptide` directory:
 
 ```bash
 conda env create -f environment.yml
