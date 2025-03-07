@@ -19,10 +19,10 @@ To apply OC-Flow to control the output of pre-trained Rectified Flow model on Ce
 
 ```
 
-To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file:
+To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file after navigating to the `peptide` directory:
 
 ```bash
-conda env create -f peptide/environment.yml
+conda env create -f environment.yml
 ```
 
 
@@ -40,7 +40,7 @@ conda env create -f peptide/environment.yml
   Code is provided for reading the compressed **lz4** files.
 
 - **Peptide Design**  
-  The data and pretrained model weights for **peptide design** tasks are available in [PepFlow](https://github.com/Ced3-han/PepFlowww).
+  The data for **peptide design** tasks are available in [PepFlow](https://github.com/Ced3-han/PepFlowww) or [here](https://drive.google.com/drive/folders/1bHaKDF3uCDPtfsihjZs0zmjwF6UU1uVl?usp=sharing). 
 
 Stay tuned for updates, and feel free to reach out for collaboration or discussions!
 
@@ -57,10 +57,10 @@ To modify the **text guidance** or the **pretrained model**, update the relevant
 
 The **terminal reward function** can be modified in the `flowgrad_edit_batch` function located in [`./image/utils/run_lib_flowgrad_oc.py`](./image/utils/run_lib_flowgrad_oc.py). By default, the loss function is a combination of CLIP loss and LPIPS loss.
 
-Run the following command to generate results:
+Navigate to the `image` directory and run the following command to generate results:
 
 ```sh
-python image/main_data.py
+python main_data.py
 ```
 
 ### QM9
@@ -69,28 +69,28 @@ The pretrained model can be downloaded from [EquiFM](https://github.com/AlgoMole
 
 To modify the **pretrained model** or change the **guidance classifier**, update the relevant parameters in [`molecule/main_guided.py`](molecule/main_guided.py).
 
-Run the following command to generate results:
+Navigate to the `molecule` directory and run the following command to generate results:
 
 ```bash
-python molecule/main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --max-step 5 --max-iter 5 --save-path oc_alpha.pt
+python main_guided.py --prop alpha --method oc --gamma 0.01 --lr 1 --max-step 5 --max-iter 5 --save-path oc_alpha.pt
 ```
 
 
 ### Peptide Design
 
-Our pretrained model, **PepFlow w/Bb**, is designed to exclusively sample peptide backbones while optimizing translations in **Euclidean space** and rotations in **SO(3) space**. The model is available at [PepFlow](https://github.com/Ced3-han/PepFlowww).
+Our pretrained model, **PepFlow w/Bb**, is designed to exclusively sample peptide backbones while optimizing translations in **Euclidean space** and rotations in **SO(3) space**. The model is available at [PepFlow](https://github.com/Ced3-han/PepFlowww) or [here](https://drive.google.com/drive/folders/1bHaKDF3uCDPtfsihjZs0zmjwF6UU1uVl?usp=sharing). 
 
 
-To modify the reward guidance, pretrained model, or dataset, update the following in [`peptide/rlhf_finetune/samples_left.py`](peptide/rlhf_finetune/samples_left.py):
+To modify the reward guidance, pretrained model, or dataset, update the following:
 
-- **Reward function**: Modify the `Reward` class (line **82**).
-- **Dataset selection**: Change the `dataset` parameter (line **442**).
-- **Model configuration**: Update the `model` parameter (line **461**).
+- **Reward function**: Modify the `Reward` class in line **82** in [`peptide/rlhf_finetune/samples_left.py`](peptide/rlhf_finetune/samples_left.py).
+- **Dataset selection**: Change the dataset path in line **37** in [`peptide/models_con/pep_dataloader.py`](peptide/models_con/pep_dataloader.py) together with the config parameter `config.dataset`.
+- **Model configuration**: Update the `FlowModel` class in [`peptide/models_con/flow_model.py`](peptide/models_con/flow_model.py) together with the config file `configs/learn_angle.yaml`.
 
-Run the following command to reproduce the experiments:
+Navigate to the `peptide` directory and run the following command to reproduce the experiments:
 
 ```bash
-sbatch peptide/submit_rlhf_fm.py
+python rlhf_finetune/samples_left.py  --reg_rot 0 --start_data 0 --todo_data 0 --n_tasks 1 --alpha 0.95 --beta 2.0 --logdir rlhf_fm/peptide/exp_rebuttal/so3_in_eu --algorithm oc_so3_opt --debug
 ```
 
 
