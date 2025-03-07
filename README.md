@@ -23,6 +23,8 @@ To install the required dependencies for peptide design, create a Conda environm
 ```bash
 conda env create -f environment.yml
 
+conda activate flow
+
 pip install -r requirements.txt
 ```
 
