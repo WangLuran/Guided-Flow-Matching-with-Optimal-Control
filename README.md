@@ -16,13 +16,15 @@ To apply OC-Flow to control the output of pre-trained Rectified Flow model on Ce
 
 ```bash
 ./image/build_env.sh
-
 ```
 
-To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file after navigating to the `peptide` directory:
+To install the required dependencies for peptide design, create a Conda environment using the provided `environment.yml` file and ' requirements.txt' file after navigating to the `peptide` directory:
 
 ```bash
 conda env create -f environment.yml
+```
+```bash
+pip install -r requirements.txt
 ```
 
 
@@ -90,7 +92,7 @@ To modify the reward guidance, pretrained model, or dataset, update the followin
 Navigate to the `peptide` directory and run the following command to reproduce the experiments:
 
 ```bash
-python rlhf_finetune/samples_left.py  --reg_rot 0 --start_data 0 --todo_data 0 --n_tasks 1 --alpha 0.95 --beta 2.0 --logdir rlhf_fm/peptide/exp_rebuttal/so3_in_eu --algorithm oc_so3_opt --debug
+python rlhf_finetune/samples_left.py  --reg_rot 0 --start_data 0 --todo_data 0 --n_tasks 1 --alpha 0.95 --beta 2.0 --algorithm oc_so3_opt --debug
 ```
 
 
