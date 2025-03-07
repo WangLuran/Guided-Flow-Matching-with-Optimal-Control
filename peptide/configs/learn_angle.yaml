@@ -62,13 +62,13 @@ train:
 dataset:
   train:
     type: peprec
-    structure_dir: dataset/PepMerge_new
-    dataset_dir: dataset/Fixed Data
+    structure_dir: dataset/PepMerge_release
+    dataset_dir: dataset/PepMerge_Imdb/Fixed_data
     name: pep_pocket_train
     reset: False
   val:
     type: peprec
-    structure_dir: dataset/PepMerge_new
-    dataset_dir: dataset/Fixed Data
+    structure_dir: dataset/PepMerge_release
+    dataset_dir: dataset/PepMerge_Imdb/Fixed_data
     name: pep_pocket_test
     reset: False

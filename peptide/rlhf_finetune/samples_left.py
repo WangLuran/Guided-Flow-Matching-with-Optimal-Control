@@ -8,7 +8,7 @@ import sys, os
 import random
 from torch.utils.data import Subset
 sys.stdout.flush()
-sys.path.append('rlhf_fm/peptide')
+sys.path.append('/u/luran/Guided-Flow-Matching-with-Optimal-Control/peptide')
 print("CUDA device count:", torch.cuda.device_count())
 from torch.utils.data import DataLoader, random_split
 from models_con.utils import process_dic
@@ -43,6 +43,11 @@ from pepflow.modules.protein.constants import (AA, max_num_heavyatoms, max_num_h
                         BBHeavyAtom, non_standard_residue_substitutions)
 from data import so3_utils
 from models_con.sample import save_samples_sc, save_samples_sc_opt
+
+torch.backends.cuda.enable_mem_efficient_sdp(False)
+torch.backends.cuda.enable_flash_sdp(False)
+torch.backends.cuda.enable_flash_sdp(False)
+
 
 def convert_to_custom_format(batch):
     formatted_data = []
@@ -215,7 +220,7 @@ def oc_so3_opt(model, R, batch, trans_0, rotmats_0, device, u_positions, alpha=0
             multi_s = []
             for j in range(3):
                 func = lambda x: dynamic_rot(x, t, trans, d_t)
-                Df_x_Ei = jvp(func, (rotmat,), (rotmat@E_s[j],))[1]
+                _, Df_x_Ei = jvp(func, (rotmat,), (rotmat@E_s[j],))
                 vf_rotmats = func(rotmat)
                 u_rotmat = u_rotmats[u_N-1-i]
                 multi_s.append(-((vf_rotmats+u_rotmat)@E_s[j]-E_s[j]@(vf_rotmats+u_rotmat) + Df_x_Ei))
@@ -395,8 +400,8 @@ def oc_so3_as_eu(model, R, batch, trans_0, rotmats_0, device, u_positions, alpha
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='rlhf_fm/peptide/configs/learn_angle.yaml')
-    parser.add_argument('--logdir', type=str, default="rlhf_fm/peptide/rlhf_finetune/sample10_trans_reg")
+    parser.add_argument('--config', type=str, default='/u/luran/Guided-Flow-Matching-with-Optimal-Control/peptide/configs/learn_angle.yaml')
+    parser.add_argument('--logdir', type=str, default="/u/luran/Guided-Flow-Matching-with-Optimal-Control/peptide/rlhf_finetune/sample_result")
     parser.add_argument('--debug', action='store_true', default=False)
     parser.add_argument('--reg_rot', type=int, default=0)
     parser.add_argument('--device', type=str, default='cuda:0')
@@ -465,7 +470,7 @@ if __name__ == '__main__':
     # Resume
     if args.resume is not None:
         print('Resuming from checkpoint: %s' % args.resume)
-        ckpt = torch.load(args.resume, map_location=device)
+        ckpt = torch.load(args.resume, map_location=device, weights_only=False)
         # print("Keys in checkpoint:", ckpt['model'].keys())
         it_first = ckpt['iteration']  # + 1
         model.load_state_dict(process_dic(ckpt['model']))
@@ -507,8 +512,7 @@ if __name__ == '__main__':
             if args.algorithm == "oc_so3_opt":
                 u_positions = [0,20,40,60,80,100,120,140,160,180,199]
                 trans_1, rotmats_1, final_score = oc_so3_opt(
-                    model, R, batch=batch, trans_0=trans_0,rotmats_0=rotmats_0, device=device, u_positions=u_positions, alpha=args.alpha, beta=args.beta, max_iter=10,n_sample=n, arg_reg_rot=args.reg_rot
-                )
+                    model, R, batch=batch, trans_0=trans_0,rotmats_0=rotmats_0, device=device, u_positions=u_positions, alpha=args.alpha, beta=args.beta, max_iter=10,n_sample=n)
             # save the optimized sample and calculate metrics
             ft_ca_dist = torch.sqrt(torch.sum((trans_1.cpu()-traj_1[-1]['trans_1'])**2*batch['generate_mask'][...,None].cpu().long()) / (torch.sum(batch['generate_mask']) + 1e-8).cpu())
             ft_rot_dist = torch.sqrt(torch.sum((rotmats_1.cpu()-traj_1[-1]['rotmats_1'])**2*batch['generate_mask'][...,None,None].long().cpu()) / (torch.sum(batch['generate_mask']) + 1e-8).cpu())

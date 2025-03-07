@@ -676,7 +676,9 @@ def _make_rigid_group_constants():
         ey_normalized = ey - torch.dot(ey, ex_normalized) * ex_normalized
         ey_normalized /= torch.linalg.norm(ey_normalized)
 
-        eznorm = torch.cross(ex_normalized, ey_normalized)
+        # eznorm = torch.cross(ex_normalized, ey_normalized)
+        eznorm = torch.linalg.cross(ex_normalized, ey_normalized)
+
         m = torch.stack([ex_normalized, ey_normalized, eznorm]).transpose(0, 1) # (3, 3_index)
         return m
 

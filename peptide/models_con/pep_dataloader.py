@@ -34,7 +34,7 @@ from pepflow.modules.protein.writers import save_pdb
 
 # testset
 names = []
-with open('dataset/Fixed Data/names.txt','r') as f:
+with open('/u/luran/Guided-Flow-Matching-with-Optimal-Control/peptide/dataset/PepMerge_Imdb/Fixed_data/names.txt','r') as f:
     for line in f:
         names.append(line.strip())
     
